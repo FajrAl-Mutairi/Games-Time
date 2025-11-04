@@ -1,0 +1,248 @@
+/*حجم الجوال */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* يمنع ظهور السكرول */
+  height: 100%;
+}
+body {
+  background: #f0f8ff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* 🔹 هذا يمنع تمدد الصفحة */
+  height: 100vh;
+  margin: 0;
+}
+
+h1, h2, h3 {
+ background: linear-gradient(80deg, #8af5ae, #199296);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 10px 0;
+}
+
+h1 { font-size: 8vw; }
+h2 { font-size: 6vw; }
+h3 { font-size: 5vw; }
+
+.form { margin-top: 88px; }
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 84%;
+  max-width: 250px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+   margin-top: 20px;
+  background-color: #8af5af;
+  color: #2b2d42;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 4vw;
+}
+
+button:hover { background-color: #4edce4;
+color:#3a3d5c }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+.cell {
+  background-color: white;
+  border: 2px solid #2b2d42;
+  font-size: 8vw;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #2b2d42;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.cell:hover { background-color: #e0f7fa; }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8af5af;
+  color: #2b2d42;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #4edce4;
+  color:#3a3d5c
+}
+
+
+.scoreboard {
+  margin-top: 20px;
+  font-size: 4vw;
+}
+
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  top: 0;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* يمنع ظهور السكرول */
+  height: 100%;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, white);
+  text-align: center;
+  padding: 101px;
+}
+
+h1 {
+  margin-bottom: 33px;
+    color: #333;
+    margin-left: 12px;
+    margin-top: -52px;
+}
+
+.game-container {
+  display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-left: -49px;
+}
+
+.game-link {
+  text-decoration: none; /* لإزالة تحت الخط */
+}
+.box1 {
+   background-image:url('../static/images/tic.jpg') ;
+  background-size: cover;       
+  background-position: center;
+}
+
+.box2 {
+  background-image: url('../static/images/guess.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-right: -50px;
+}
+.game-card {  
+  background-repeat: no-repeat;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 20px;         
+  border: 3px solid white;
+  width: 150px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #333;
+  height: 150px;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.my-image {
+ position: absolute;
+    top: 329px;
+    right: 231px;
+    width: 142px;
+    height: 107px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+
+.my-image1 {
+ position: absolute;
+    top: 382px;
+    right: 114px;
+    width: 117px;
+    height: 86px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(30deg);
+    transition: transform 0.3s;
+}
+.my-image2 {
+ position: absolute;
+    top: 314px;
+    right: -5px;
+    width: 133px;
+    height: 105px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+.mylogo {
+ position: absolute;
+    top: 16px;
+    right: 321px;
+    width: 43px;
+    height: 44px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+.ticpic {
+ position: absolute;
+    top: 76px;
+    right: 125px;
+    width: 123px;
+    height: 103px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+
+.ribbon {
+  position: absolute;
+    top: 482px;
+    right: -76px;
+    width: 485px;
+    height: 122px;
+    border-radius: 15px;
+    object-fit: cover;
+    transform: rotate(-15deg);
+    transition: transform 0.3s;
+}
+/*  Media Query للشاشات الكبيرة */
+@media (min-width: 600px) {
+  h1 { font-size: 48px; }
+  h2 { font-size: 36px; }
+  h3 { font-size: 28px; }
+  button, .button { font-size: 16px; }
+  .scoreboard { font-size: 18px; }
+  .cell { font-size: 32px; }
+  input { max-width: 300px; }
+}

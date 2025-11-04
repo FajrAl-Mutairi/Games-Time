@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Tic Tac Toe </h1>
+  <div>
+     <img src="{{ url_for('static', filename='images/mylogo.png') }}" alt="صورة" class="mylogo">
+       <img src="{{ url_for('static', filename='images/tic4.png') }}" alt="صورة" class="ticpic"> 
+      </div>
+  <form method="POST" class="form">
+    <label>Player 1 Name 👤 :</label>
+    <input type="text" name="player1" required>
+    <label>Player 2 Name 👥:</label>
+    <input type="text" name="player2" required>
+    <button type="submit"> Start Game </button>
+  </form>
+
+  <br>
+
+  <a href="{{ url_for('home') }}" class="button"> Home</a>
+</body>
+</html>

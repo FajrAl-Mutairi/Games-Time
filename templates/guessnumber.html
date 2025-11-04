@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Number 🎯</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<style>
+/* 🎮 تصميم الجوال (الافتراضي) */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  height: 100%;
+}    
+body {
+      background-color: #f0f8ff;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #2b2d42;
+      margin: -10px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 8vw;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 4vw;
+      margin-bottom: -20px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    input[type="number"] {
+      width: 80%;
+      max-width: 240px;
+      padding: 12px;
+      border: 2px solid #2b2d42;
+      border-radius: 10px;
+      font-size: 4.5vw;
+      text-align: center;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="number"]:focus {
+      border-color: #457b9d;
+      box-shadow: 0 0 8px #a8dadc;
+    }
+
+    button, .button {
+     background-color: #8af5af;
+     color: #2b2d42;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 25px;
+      font-size: 4.5vw;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    button:hover, .button:hover {
+     background-color: #4edce4;
+     color:#3a3d5c
+    }
+
+    .scoreboard p {
+      margin-top: 20px;
+      font-size: 4.5vw;
+      color: #e63946;
+      font-weight: bold;
+    }
+    .mylogo {
+      position: absolute;
+      top: 16px;
+    right: 321px;
+    width: 43px;
+    height: 44px;
+      border-radius: 15px;
+      object-fit: cover;
+      transform: rotate(0deg);
+      transition: transform 0.3s;
+  }
+
+    /* 💻 تصميم الكمبيوتر */
+    @media (min-width: 768px) {
+      body {
+        padding: 80px;
+      }
+
+      h1 {
+        font-size: 3.5em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      input[type="number"] {
+        width: 300px;
+        font-size: 1.8em;
+        
+      }
+
+      button, .button {
+        font-size: 1.5em;
+
+      }
+
+      .scoreboard p {
+        font-size: 1.6em;
+      }
+    }
+</style>
+
+<body>
+  <h1>Guess the Number </h1>
+
+  <p>Try to guess the number between 1 and 100</p>
+ <img src="{{ url_for('static', filename='images/mylogo.png') }}" alt="صورة" class="mylogo">
+  <form method="POST" class="form">
+    <input type="number" name="guess" min="1" max="100" required>
+    <button type="submit">Guess</button>
+  </form>
+
+  <div class="scoreboard">
+    <p>{{ message }}</p>
+  </div>
+
+  {% if game_over %}
+    <br>
+    <a href="{{ url_for('reset_guessnumber') }}" class="button">Play Again </a>
+  {% endif %}
+
+  <br>
+  <a href="{{ url_for('home') }}" class="button"> Home</a>
+
+  {% if game_over %}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+      function startConfetti() {
+        const duration = 4000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+          const timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          const particleCount = 50 * (timeLeft / duration);
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            colors: ['#457b9d', '#a8dadc', '#ffc1cc','#fff176'],
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+          }));
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            colors: ['#457b9d', '#a8dadc', '#ffc1cc','#fff176'],
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+          }));
+        }, 250);
+      }
+
+      startConfetti();
+    </script>
+  {% endif %}
+</body>
+</html>

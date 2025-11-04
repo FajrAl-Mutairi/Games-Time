@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Games 🎮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Games <br>
+  TIME </h1>
+
+  <div class="game-container">
+    <a href="{{ url_for('tictactoe_index') }}" class="game-link">
+      <div class="game-card box1">
+      </div>
+    </a>
+
+
+    <a href="{{ url_for('guessnumber') }}" class="game-link">
+      <div class="game-card box2">
+      </div>
+    </a>
+  </div>
+  <div>
+ <img src="{{ url_for('static', filename='images/ticpic1.png') }}" alt="صورة" class="my-image">
+  <img src="{{ url_for('static', filename='images/ticpic2.png') }}" alt="صورة" class="my-image1">
+   <img src="{{ url_for('static', filename='images/ticpic3.png') }}" alt="صورة" class="my-image2">
+ <img src="{{ url_for('static', filename='images/ribbon.jpg') }}" alt="صورة" class="ribbon">
+ <img src="{{ url_for('static', filename='images/mylogo.png') }}" alt="صورة" class="mylogo">
+ </div>
+</body>
+</html>

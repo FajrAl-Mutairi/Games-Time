@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1 class="wave-text"> Tic Tac Toe </h1>
+ <img src="{{ url_for('static', filename='images/mylogo.png') }}" alt="صورة" class="mylogo">
+  {% if winner %}
+    <h2>{{ player1 if winner=='player1' else player2 }} Wins! </h2>
+    <a href="/reset" class="button">Play Again</a>
+    <a href="/change_players" class="button">Change Players</a>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const duration = 4000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 9999 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+          const timeLeft = animationEnd - Date.now();
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          const particleCount = 50 * (timeLeft / duration);
+
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            colors: ['#457b9d', '#a8dadc', '#ffc1cc','#fff176'],
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+          }));
+
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            colors: ['#457b9d', '#a8dadc', '#ffc1cc','#fff176'],
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+          }));
+
+        }, 250);
+      });
+      
+    </script>
+
+  {% elif draw %}
+    <h2>It's a Draw!</h2>
+    <a href="/reset" class="button">Play Again </a>
+    <a href="/change_players" class="button">Change Players</a>
+  {% else %}
+    <h3>Current Turn: {{ player1 if current=='player1' else player2 }} ({{ 'X' if current == 'player1' else 'O' }})</h3>
+    <div class="board">
+      {% for i in range(9) %}
+        {% if board[i] == " " %}
+          <a href="/move/{{ i }}" class="cell"></a>
+        {% else %}
+          <div class="cell">{{ board[i] }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="scoreboard">
+    <p><b>{{ player1 }}</b>: {{ scores.player1 }} wins</p>
+    <p><b>{{ player2 }}</b>: {{ scores.player2 }} wins</p>
+  </div>
+
+  <br>
+  <a href="{{ url_for('home') }}" class="button"> Home</a>
+
+</body>
+</html>
